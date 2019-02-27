@@ -48,15 +48,21 @@ public class ArrayUtility {
     public Integer mostCommon(Integer[] array) {
 
         Map<Integer, Integer> counter = new TreeMap<>();
+        int nullCount = 0;
         for(int i = 0; i < array.length; i++){
-            Integer count = counter.get(array[i]);
-            if(count == null){
-                counter.put(array[i], 1);
+            if(array[i]!= null) {
+                Integer count = counter.get(array[i]);
+                if (count == null) {
+                    counter.put(array[i], 1);
+                } else {
+                    counter.put(array[i], count++);
+                }
             }
             else{
-                counter.put(array[i], count++);
+                nullCount++;
             }
         }
+
 
         Integer maxKey = null;
         int maxValue = 0;
@@ -66,6 +72,9 @@ public class ArrayUtility {
                 maxKey = e.getKey();
                 maxValue = e.getValue();
             }
+        }
+        if(nullCount > maxValue){
+            return null;
         }
         return maxKey;
     }

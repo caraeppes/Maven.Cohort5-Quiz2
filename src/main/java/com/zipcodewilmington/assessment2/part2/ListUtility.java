@@ -9,7 +9,10 @@ public class ListUtility {
     private List<Integer> list = new ArrayList<>();
 
 
-    public Boolean add(int i) {
+    public Boolean add(Integer i) {
+        if(i == null){
+            list.add(null);
+        }
             list.add(i);
             return this.contains(i);
     }
@@ -47,6 +50,7 @@ public class ListUtility {
     }
 
     public Boolean contains(Integer valueToAdd) {
+
         return list.contains(valueToAdd);
     }
 
